@@ -1,0 +1,40 @@
+<h4 class="page-header">Add Predecessor/Successor Relationship</h4>
+<div class="form-group" [ngClass]="{'has-error':company.value==-1&&company.dirty}">
+    <label class="control-label" for="companyId">Company</label>
+    <select #company="ngModel" name="companyId" id="companyId" required class="form-control"
+        (ngModelChange)="onCompanyChange($event)" [(ngModel)]="companyModel.companyId">
+        <option *ngFor="let item of companies" [value]="item.id">{{item.companyName}}</option>
+    </select>
+    <span *ngIf="company.value==-1&&company.dirty" class="help-block">Company is required</span>
+</div>
+<div class="form-group" [ngClass]="{'has-error':brand.value==-1&&brand.dirty}">
+    <label class="control-label" for="brandId">Brand</label>
+    <select #brand="ngModel" name="brandId" id="brandId" required class="form-control"
+        (ngModelChange)="onBrandChange($event)" [(ngModel)]="brandModel.brandId">
+        <option *ngFor="let item of brands" [value]="item.id">{{item.brandName}}</option>
+    </select>
+    <span *ngIf="brand.value==-1&&brand.dirty" class="help-block">Brand is required</span>
+</div>
+<form #addModificationForm="ngForm" (ngSubmit)="checkout(addModificationForm)">
+    <div class="form-group" [ngClass]="{'has-error':predecessorModel.value==-1&&predecessorModel.dirty}">
+        <label class="control-label" for="predecessorId">Predecessor Model</label>
+        <select #predecessorModel="ngModel" name="predecessorId" id="predecessorId" required
+            class="form-control" [(ngModel)]="predecessorModelModel.modelId">
+            <option *ngFor="let item of predecessorModels" [value]="item.id">{{item.modelName}}
+                {{item.codeNameorGeneration}}</option>
+        </select>
+        <span *ngIf="predecessorModel.value==-1&&predecessorModel.dirty" class="help-block">Predecessor Model is
+            required</span>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error':successorModel.value==-1&&successorModel.dirty}">
+        <label class="control-label" for="successorId">Successor Model</label>
+        <select #successorModel="ngModel" name="successorId" id="successorId" required
+            class="form-control" [(ngModel)]="successorModelModel.modelId">
+            <option *ngFor="let item of successorModels" [value]="item.id">{{item.modelName}}
+                {{item.codeNameorGeneration}}</option>
+        </select>
+        <span *ngIf="successorModel.value==-1&&successorModel.dirty" class="help-block">Successor Model is
+            required</span>
+    </div>
+    <button type="submit" class="btn btn-primary" >Add Relationship</button>
+</form>

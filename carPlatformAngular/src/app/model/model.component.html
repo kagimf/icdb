@@ -1,0 +1,30 @@
+<h3 class="page-header">Models</h3>
+<div *ngIf="filterText">
+    You searched for {{filterText}}
+</div>
+<div>
+    <input class="form-control" type="text" placeholder="type something..." [(ngModel)]="filterText">
+</div>
+<div>
+    <ul class="list-group">
+        <li *ngFor="let model of models | modelFilter:filterText | slice:(pager.currentPage-1)*pager.pageSize:((pager.currentPage-1)*pager.pageSize)+pager.pageSize"
+            class="list-group-item">
+            <h4><strong>{{model.brand.brandName}} {{model.modelName}} {{model.codeNameorGeneration}}</strong></h4>
+            <h6 *ngIf="model.productionEndDate==0; else elseBlock">{{model.productionStartDate}} - </h6>
+            <ng-template #elseBlock>
+                <h6>{{model.productionStartDate}} - {{model.productionEndDate}}</h6>
+            </ng-template>
+            <a routerLink="/model/modification/{{model.id}}" class="btn btn-xs btn-primary pull-right">Show
+                Modifications</a>
+            <a routerLink="/model/edit/{{model.id}}" class="btn btn-xs btn-primary pull-right">Edit
+                Model</a>
+        </li>
+    </ul>
+</div>
+<nav aria-label="Page Navigation">
+    <ul class="pagination">
+        <li *ngFor="let page of pager.pageList" class="page-item" [class.active]="page===pager.currentPage">
+            <a class="page-link" style="cursor:pointer;" (click)="setPage(page)">{{page}}</a>
+        </li>
+    </ul>
+</nav>

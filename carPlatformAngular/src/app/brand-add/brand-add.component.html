@@ -1,0 +1,24 @@
+<h4 class="page-header">Add Brand</h4>
+<form #addBrandForm="ngForm" (ngSubmit)="checkout(addBrandForm)">
+    <div class="form-group" [ngClass]="{'has-error':company.value==-1&&company.dirty}">
+        <label class="control-label" for="companyId">Company</label>
+        <select #company="ngModel" name="companyId" id="companyId" required class="form-control"
+            [(ngModel)]="companyModel.companyId">
+            <option *ngFor="let item of companies" [value]="item.id">{{item.companyName}}</option>
+        </select>
+        <span *ngIf="company.value==-1&&company.dirty" class="help-block">Company is required</span>
+    </div>
+    <div class="form-group" [class.has-error]="brandName.invalid&&brandName.dirty">
+        <label class="control-label" for="brandName">Brand Name</label>
+        <input (change)="isDirty=true" #brandName="ngModel" type="text" class="form-control" id="brandName"
+            name="brandName" [(ngModel)]="brandModel.brandName" required>
+        <span *ngIf="brandName.invalid&&brandName.dirty" class="help-block">Brand Name is required</span>
+    </div>
+    <div class="form-group" [class.has-error]="country.invalid&&country.dirty">
+        <label class="control-label" for="country">Country</label>
+        <input (change)="isDirty=true" #country="ngModel" type="text" class="form-control" id="country"
+            name="country" [(ngModel)]="brandModel.country" required>
+        <span *ngIf="country.invalid&&country.dirty" class="help-block">Country is required</span>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="addBrandForm.invalid">Add Brand</button>
+</form>

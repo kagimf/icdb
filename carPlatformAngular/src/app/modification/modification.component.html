@@ -1,0 +1,46 @@
+<h3 class="page-header">Modifications</h3>
+<div *ngIf="filterText">
+    You searched for {{filterText}}
+</div>
+<div>
+    <input class="form-control" type="text" placeholder="type something..." [(ngModel)]="filterText">
+</div>
+<div>
+    <ul class="list-group">
+        <li *ngFor="let modification of modifications | modificationFilter:filterText | slice:(pager.currentPage-1)*pager.pageSize:((pager.currentPage-1)*pager.pageSize)+pager.pageSize"
+            class="list-group-item">
+            <h4><strong>{{modification.model.brand.brandName}} {{modification.modificationName}}
+                    {{modification.model.codeNameorGeneration}}</strong></h4>
+            <div *ngIf="modification.fuelType==='Electricity'; else nonEV">
+                <h5>
+                    {{modification.power}} HP</h5>
+            </div>
+            <ng-template #nonEV>
+                <h5 *ngIf="modification.cylinderPosition==='Boxer'||modification.cylinderPosition==='Inline'; else vBlock">
+                    {{modification.roundedCylinderDisplacement}}
+                    {{modification.cylinderPosition}}-{{modification.cylinderCount}} ({{modification.power}} hp)</h5>
+                <ng-template #vBlock>
+                    <h5>{{modification.roundedCylinderDisplacement}}
+                        {{modification.cylinderPosition}}{{modification.cylinderCount}} ({{modification.power}} hp)</h5>
+                </ng-template>
+            </ng-template>
+            <h6 *ngIf="modification.productionEndDate==0; else elseBlock">
+                <h6 *ngIf="modification.productionStartDate!=0">{{modification.productionStartDate}} - </h6>
+            </h6>
+            <ng-template #elseBlock>
+                <h6>{{modification.productionStartDate}} - {{modification.productionEndDate}}</h6>
+            </ng-template>
+            <a routerLink="/model/modification/view/{{modification.id}}" class="btn btn-xs btn-primary pull-right">Show
+                Modification Details</a>
+            <a routerLink="/modification/edit/{{modification.id}}" class="btn btn-xs btn-primary pull-right">Edit
+                Modification</a>
+        </li>
+    </ul>
+</div>
+<nav aria-label="Page Navigation">
+    <ul class="pagination">
+        <li *ngFor="let page of pager.pageList" class="page-item" [class.active]="page===pager.currentPage">
+            <a class="page-link" style="cursor:pointer;" (click)="setPage(page)">{{page}}</a>
+        </li>
+    </ul>
+</nav>

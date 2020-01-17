@@ -1,0 +1,77 @@
+<h4 class="page-header">Add Model</h4>
+<form #addModelForm="ngForm" (ngSubmit)="checkout(addModelForm)">
+    <div class="form-group" [ngClass]="{'has-error':company.value==-1&&company.dirty}">
+        <label class="control-label" for="companyId">Company</label>
+        <select #company="ngModel" name="companyId" id="companyId" required class="form-control"
+            (ngModelChange)="onCompanyChange($event)" [(ngModel)]="companyModel.companyId">
+            <option *ngFor="let item of companies" [value]="item.id">{{item.companyName}}</option>
+        </select>
+        <span *ngIf="company.value==-1&&company.dirty" class="help-block">Company is required</span>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error':brand.value==-1&&brand.dirty}">
+        <label class="control-label" for="brandId">Brand</label>
+        <select #brand="ngModel" name="brandId" id="brandId" required class="form-control"
+            [(ngModel)]="brandModel.brandId">
+            <option *ngFor="let item of brands" [value]="item.id">{{item.brandName}}</option>
+        </select>
+        <span *ngIf="brand.value==-1&&brand.dirty" class="help-block">Brand is required</span>
+    </div>
+    <div class="form-group" [class.has-error]="modelName.invalid&&modelName.dirty">
+        <label class="control-label" for="modelName">Model Name</label>
+        <input (change)="isDirty=true" #modelName="ngModel" type="text" class="form-control" id="modelName"
+            name="modelName" [(ngModel)]="modelModel.modelName" required>
+        <span *ngIf="modelName.invalid&&modelName.dirty" class="help-block">Model Name is required</span>
+    </div>
+    <div class="form-group" [class.has-error]="generation.invalid&&generation.dirty">
+        <label class="control-label" for="generation">Generation</label>
+        <input (change)="isDirty=true" #generation="ngModel" type="text" class="form-control" id="generation"
+            name="generation" [(ngModel)]="modelModel.generation" required>
+        <span *ngIf="generation.invalid&&generation.dirty" class="help-block">Generation is required</span>
+    </div>
+    <div class="form-group" [class.has-error]="codeName.invalid&&codeName.dirty">
+        <label class="control-label" for="codeName">Code Name</label>
+        <input (change)="isDirty=true" #codeName="ngModel" type="text" class="form-control" id="codeName"
+            name="codeName" [(ngModel)]="modelModel.codeName" required>
+        <span *ngIf="codeName.invalid&&codeName.dirty" class="help-block">Code Name is required</span>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="isFacelifted" [(ngModel)]="modelModel.isFacelifted"> Is Facelifted?
+        </label>
+    </div>
+    <div class="form-group" [class.has-error]="productionStartDate.invalid&&productionStartDate.dirty">
+        <label class="control-label" for="productionStartDate">Production Start Date</label>
+        <input (change)="isDirty=true" #productionStartDate="ngModel" type="text" class="form-control"
+            id="productionStartDate" name="productionStartDate" [(ngModel)]="modelModel.productionStartDate" required>
+        <span *ngIf="productionStartDate.invalid&&productionStartDate.dirty" class="help-block">Production Start Date is
+            required</span>
+    </div>
+    <div class="form-group" [class.has-error]="productionEndDate.invalid&&productionEndDate.dirty">
+        <label class="control-label" for="productionEndDate">Production End Date</label>
+        <input (change)="isDirty=true" #productionEndDate="ngModel" type="text" class="form-control"
+            id="productionEndDate" name="productionEndDate" [(ngModel)]="modelModel.productionEndDate" required>
+        <span *ngIf="productionEndDate.invalid&&productionEndDate.dirty" class="help-block">Production End Date is
+            required</span>
+    </div>
+    <div class="form-group" [class.has-error]="segment.invalid&&segment.dirty">
+        <label class="control-label" for="segment">Segment</label>
+        <input (change)="isDirty=true" #segment="ngModel" type="text" class="form-control" id="segment" name="segment"
+            [(ngModel)]="modelModel.segment" required>
+        <span *ngIf="segment.invalid&&segment.dirty" class="help-block">Segment is
+            required</span>
+    </div>
+    <button type="submit" class="btn btn-primary" >Add Model</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,236 @@
+<h4 class="page-header">Edit Modification</h4>
+<form #editModificationForm="ngForm" (ngSubmit)="checkout(editModificationForm)">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" [class.has-error]="modificationName.invalid&&modificationName.dirty">
+                <label class="control-label" for="modificationName">Modification Name</label>
+                <input (change)="isDirty=true" #modificationName="ngModel" type="text" class="form-control"
+                    id="modificationName" name="modificationName" [(ngModel)]="modification.modificationName"
+                    required>
+                <span *ngIf="modificationName.invalid&&modificationName.dirty" class="help-block">Modification Name is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="carClass.invalid&&carClass.dirty">
+                <label class="control-label" for="carClass">Car Class</label>
+                <input (change)="isDirty=true" #carClass="ngModel" type="text" class="form-control"
+                    id="carClass" name="carClass" [(ngModel)]="modification.carClass"
+                    required>
+                <span *ngIf="carClass.invalid&&carClass.dirty" class="help-block">Car Class is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="productionStartDate.invalid&&productionStartDate.dirty">
+                <label class="control-label" for="productionStartDate">Production Start Date</label>
+                <input (change)="isDirty=true" #productionStartDate="ngModel" type="text" class="form-control"
+                    id="productionStartDate" name="productionStartDate"
+                    [(ngModel)]="modification.productionStartDate" required>
+                <span *ngIf="productionStartDate.invalid&&productionStartDate.dirty" class="help-block">Production Start
+                    Date is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="productionEndDate.invalid&&productionEndDate.dirty">
+                <label class="control-label" for="productionEndDate">Production End Date</label>
+                <input (change)="isDirty=true" #productionEndDate="ngModel" type="text" class="form-control"
+                    id="productionEndDate" name="productionEndDate" [(ngModel)]="modification.productionEndDate"
+                    required>
+                <span *ngIf="productionEndDate.invalid&&productionEndDate.dirty" class="help-block">Production End Date
+                    is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="fuelType.invalid&&fuelType.dirty">
+                <label class="control-label" for="fuelType">Fuel Type</label>
+                <input (change)="isDirty=true" #fuelType="ngModel" type="text" class="form-control" id="fuelType"
+                    name="fuelType" [(ngModel)]="modification.fuelType" required>
+                <span *ngIf="fuelType.invalid&&fuelType.dirty" class="help-block">Fuel Type is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="engineCode.invalid&&engineCode.dirty">
+                <label class="control-label" for="engineCode">Engine Code</label>
+                <input (change)="isDirty=true" #engineCode="ngModel" type="text" class="form-control" id="engineCode"
+                    name="engineCode" [(ngModel)]="modification.engineCode" required>
+                <span *ngIf="engineCode.invalid&&engineCode.dirty" class="help-block">Engine Code is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="cylinderPosition.invalid&&cylinderPosition.dirty">
+                <label class="control-label" for="cylinderPosition">Cylinder Position</label>
+                <input (change)="isDirty=true" #cylinderPosition="ngModel" type="text" class="form-control"
+                    id="cylinderPosition" name="cylinderPosition" [(ngModel)]="modification.cylinderPosition"
+                    required>
+                <span *ngIf="cylinderPosition.invalid&&cylinderPosition.dirty" class="help-block">Cylinder Position is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="cylinderCount.invalid&&cylinderCount.dirty">
+                <label class="control-label" for="cylinderCount">Cylinder Count</label>
+                <input (change)="isDirty=true" #cylinderCount="ngModel" type="text" class="form-control"
+                    id="cylinderCount" name="cylinderCount" [(ngModel)]="modification.cylinderCount" required>
+                <span *ngIf="cylinderCount.invalid&&cylinderCount.dirty" class="help-block">Cylinder Count is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="cylinderDisplacement.invalid&&cylinderDisplacement.dirty">
+                <label class="control-label" for="cylinderDisplacement">Cylinder Displacement</label>
+                <input (change)="isDirty=true" #cylinderDisplacement="ngModel" type="text" class="form-control"
+                    id="cylinderDisplacement" name="cylinderDisplacement"
+                    [(ngModel)]="modification.cylinderDisplacement" required>
+                <span *ngIf="cylinderDisplacement.invalid&&cylinderDisplacement.dirty" class="help-block">Cylinder
+                    Displacement
+                    is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="power.invalid&&power.dirty">
+                <label class="control-label" for="power">Power</label>
+                <input (change)="isDirty=true" #power="ngModel" type="text" class="form-control" id="power" name="power"
+                    [(ngModel)]="modification.power" required>
+                <span *ngIf="power.invalid&&power.dirty" class="help-block">Power is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="torque.invalid&&torque.dirty">
+                <label class="control-label" for="torque">Torque</label>
+                <input (change)="isDirty=true" #torque="ngModel" type="text" class="form-control" id="torque"
+                    name="torque" [(ngModel)]="modification.torque" required>
+                <span *ngIf="torque.invalid&&torque.dirty" class="help-block">Torque is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="maxSpeed.invalid&&maxSpeed.dirty">
+                <label class="control-label" for="maxSpeed">Top Speed</label>
+                <input (change)="isDirty=true" #maxSpeed="ngModel" type="text" class="form-control" id="maxSpeed"
+                    name="maxSpeed" [(ngModel)]="modification.maxSpeed" required>
+                <span *ngIf="maxSpeed.invalid&&maxSpeed.dirty" class="help-block">Top speed is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="acceleration0to100.invalid&&acceleration0to100.dirty">
+                <label class="control-label" for="acceleration0to100">Acceleration 0 to 100</label>
+                <input (change)="isDirty=true" #acceleration0to100="ngModel" type="text" class="form-control"
+                    id="acceleration0to100" name="acceleration0to100" [(ngModel)]="modification.acceleration0to100"
+                    required>
+                <span *ngIf="acceleration0to100.invalid&&acceleration0to100.dirty" class="help-block">Acceleration 0 to
+                    100 is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="transmissionType.invalid&&transmissionType.dirty">
+                <label class="control-label" for="transmissionType">Transmission Type</label>
+                <input (change)="isDirty=true" #transmissionType="ngModel" type="text" class="form-control"
+                    id="transmissionType" name="transmissionType" [(ngModel)]="modification.transmissionType"
+                    required>
+                <span *ngIf="transmissionType.invalid&&transmissionType.dirty" class="help-block">Transmission Type is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="transmission.invalid&&transmission.dirty">
+                <label class="control-label" for="transmission">Transmission</label>
+                <input (change)="isDirty=true" #transmission="ngModel" type="text" class="form-control"
+                    id="transmission" name="transmission" [(ngModel)]="modification.transmission" required>
+                <span *ngIf="transmission.invalid&&transmission.dirty" class="help-block">Transmission is
+                    required</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" [class.has-error]="gearCount.invalid&&gearCount.dirty">
+                <label class="control-label" for="gearCount">Gear Count</label>
+                <input (change)="isDirty=true" #gearCount="ngModel" type="text" class="form-control" id="gearCount"
+                    name="gearCount" [(ngModel)]="modification.gearCount" required>
+                <span *ngIf="gearCount.invalid&&gearCount.dirty" class="help-block">Gear Count is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="driveWheel.invalid&&driveWheel.dirty">
+                <label class="control-label" for="driveWheel">Drive Wheel</label>
+                <input (change)="isDirty=true" #driveWheel="ngModel" type="text" class="form-control" id="driveWheel"
+                    name="driveWheel" [(ngModel)]="modification.driveWheel" required>
+                <span *ngIf="driveWheel.invalid&&driveWheel.dirty" class="help-block">Drive Wheel is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="turbine.invalid&&turbine.dirty">
+                <label class="control-label" for="turbine">Turbine</label>
+                <input (change)="isDirty=true" #turbine="ngModel" type="text" class="form-control" id="turbine"
+                    name="turbine" [(ngModel)]="modification.turbine" required>
+                <span *ngIf="turbine.invalid&&turbine.dirty" class="help-block">Turbine is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="engineLocation.invalid&&engineLocation.dirty">
+                <label class="control-label" for="engineLocation">Engine Location</label>
+                <input (change)="isDirty=true" #engineLocation="ngModel" type="text" class="form-control"
+                    id="engineLocation" name="engineLocation" [(ngModel)]="modification.engineLocation" required>
+                <span *ngIf="engineLocation.invalid&&engineLocation.dirty" class="help-block">Engine Location is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="enginePosition.invalid&&enginePosition.dirty">
+                <label class="control-label" for="enginePosition">Engine Position</label>
+                <input (change)="isDirty=true" #enginePosition="ngModel" type="text" class="form-control"
+                    id="enginePosition" name="enginePosition" [(ngModel)]="modification.enginePosition" required>
+                <span *ngIf="enginePosition.invalid&&enginePosition.dirty" class="help-block">Engine Position is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="fuelConsumptionUrban.invalid&&fuelConsumptionUrban.dirty">
+                <label class="control-label" for="fuelConsumptionUrban">Fuel Consumption Urban</label>
+                <input (change)="isDirty=true" #fuelConsumptionUrban="ngModel" type="text" class="form-control"
+                    id="fuelConsumptionUrban" name="fuelConsumptionUrban"
+                    [(ngModel)]="modification.fuelConsumptionUrban" required>
+                <span *ngIf="fuelConsumptionUrban.invalid&&fuelConsumptionUrban.dirty" class="help-block">Fuel
+                    Consumption Urban
+                    is
+                    required</span>
+            </div>
+            <div class="form-group"
+                [class.has-error]="fuelConsumptionExtraUrban.invalid&&fuelConsumptionExtraUrban.dirty">
+                <label class="control-label" for="fuelConsumptionExtraUrban">Fuel Consumption Extra Urban</label>
+                <input (change)="isDirty=true" #fuelConsumptionExtraUrban="ngModel" type="text" class="form-control"
+                    id="fuelConsumptionExtraUrban" name="fuelConsumptionExtraUrban"
+                    [(ngModel)]="modification.fuelConsumptionExtraUrban" required>
+                <span *ngIf="fuelConsumptionExtraUrban.invalid&&fuelConsumptionExtraUrban.dirty" class="help-block">Fuel
+                    Consumption Extra Urban is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="fuelConsumptionCombined.invalid&&fuelConsumptionCombined.dirty">
+                <label class="control-label" for="fuelConsumptionCombined">Fuel Consumption Combined</label>
+                <input (change)="isDirty=true" #fuelConsumptionCombined="ngModel" type="text" class="form-control"
+                    id="fuelConsumptionCombined" name="fuelConsumptionCombined"
+                    [(ngModel)]="modification.fuelConsumptionCombined" required>
+                <span *ngIf="fuelConsumptionCombined.invalid&&fuelConsumptionCombined.dirty" class="help-block">Fuel
+                    Consumption
+                    Combined is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="length.invalid&&length.dirty">
+                <label class="control-label" for="length">Length</label>
+                <input (change)="isDirty=true" #length="ngModel" type="text" class="form-control" id="length"
+                    name="length" [(ngModel)]="modification.length" required>
+                <span *ngIf="length.invalid&&length.dirty" class="help-block">Length is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="weight.invalid&&weight.dirty">
+                <label class="control-label" for="weight">Weight</label>
+                <input (change)="isDirty=true" #weight="ngModel" type="text" class="form-control" id="weight"
+                    name="weight" [(ngModel)]="modification.weight" required>
+                <span *ngIf="weight.invalid&&weight.dirty" class="help-block">Weight is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="bodyType.invalid&&bodyType.dirty">
+                <label class="control-label" for="bodyType">Body Type</label>
+                <input (change)="isDirty=true" #bodyType="ngModel" type="text" class="form-control" id="bodyType"
+                    name="bodyType" [(ngModel)]="modification.bodyType" required>
+                <span *ngIf="bodyType.invalid&&bodyType.dirty" class="help-block">Body Type is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="doorCount.invalid&&doorCount.dirty">
+                <label class="control-label" for="doorCount">Door Count</label>
+                <input (change)="isDirty=true" #doorCount="ngModel" type="text" class="form-control" id="doorCount"
+                    name="doorCount" [(ngModel)]="modification.doorCount" required>
+                <span *ngIf="doorCount.invalid&&doorCount.dirty" class="help-block">Door Count is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="seatCount.invalid&&seatCount.dirty">
+                <label class="control-label" for="seatCount">Seat Count</label>
+                <input (change)="isDirty=true" #seatCount="ngModel" type="text" class="form-control" id="seatCount"
+                    name="seatCount" [(ngModel)]="modification.seatCount" required>
+                <span *ngIf="seatCount.invalid&&seatCount.dirty" class="help-block">Seat Count is
+                    required</span>
+            </div>
+            <div class="form-group" [class.has-error]="range.invalid&&range.dirty">
+                <label class="control-label" for="range">Range</label>
+                <input (change)="isDirty=true" #range="ngModel" type="text" class="form-control" id="range" name="range"
+                    [(ngModel)]="modification.range" required>
+                <span *ngIf="range.invalid&&range.dirty" class="help-block">Range is
+                    required</span>
+            </div>
+
+        </div>
+    </div>
+    <button  type="submit" class="btn btn-primary">Edit Modification</button>
+</form>

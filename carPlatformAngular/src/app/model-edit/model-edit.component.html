@@ -1,0 +1,61 @@
+<h4 class="page-header">Edit Model</h4>
+<form #addModelForm="ngForm" (ngSubmit)="checkout(addModelForm)">
+    <div class="form-group" [class.has-error]="modelName.invalid&&modelName.dirty">
+        <label class="control-label" for="modelName">Model Name</label>
+        <input (change)="isDirty=true" #modelName="ngModel" type="text" class="form-control" id="modelName"
+            name="modelName" [(ngModel)]="model.modelName" required>
+        <span *ngIf="modelName.invalid&&modelName.dirty" class="help-block">Model Name is required</span>
+    </div>
+    <div class="form-group" [class.has-error]="generation.invalid&&generation.dirty">
+        <label class="control-label" for="generation">Generation</label>
+        <input (change)="isDirty=true" #generation="ngModel" type="text" class="form-control" id="generation"
+            name="generation" [(ngModel)]="model.generation" required>
+        <span *ngIf="generation.invalid&&generation.dirty" class="help-block">Generation is required</span>
+    </div>
+    <div class="form-group" [class.has-error]="codeName.invalid&&codeName.dirty">
+        <label class="control-label" for="codeName">Code Name</label>
+        <input (change)="isDirty=true" #codeName="ngModel" type="text" class="form-control" id="codeName"
+            name="codeName" [(ngModel)]="model.codeName" required>
+        <span *ngIf="codeName.invalid&&codeName.dirty" class="help-block">Code Name is required</span>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="isFacelifted" [(ngModel)]="model.isFacelifted"> Is Facelifted?
+        </label>
+    </div>
+    <div class="form-group" [class.has-error]="productionStartDate.invalid&&productionStartDate.dirty">
+        <label class="control-label" for="productionStartDate">Production Start Date</label>
+        <input (change)="isDirty=true" #productionStartDate="ngModel" type="text" class="form-control"
+            id="productionStartDate" name="productionStartDate" [(ngModel)]="model.productionStartDate" required>
+        <span *ngIf="productionStartDate.invalid&&productionStartDate.dirty" class="help-block">Production Start Date is
+            required</span>
+    </div>
+    <div class="form-group" [class.has-error]="productionEndDate.invalid&&productionEndDate.dirty">
+        <label class="control-label" for="productionEndDate">Production End Date</label>
+        <input (change)="isDirty=true" #productionEndDate="ngModel" type="text" class="form-control"
+            id="productionEndDate" name="productionEndDate" [(ngModel)]="model.productionEndDate" required>
+        <span *ngIf="productionEndDate.invalid&&productionEndDate.dirty" class="help-block">Production End Date is
+            required</span>
+    </div>
+    <div class="form-group" [class.has-error]="segment.invalid&&segment.dirty">
+        <label class="control-label" for="segment">Segment</label>
+        <input (change)="isDirty=true" #segment="ngModel" type="text" class="form-control" id="segment" name="segment"
+            [(ngModel)]="model.segment" required>
+        <span *ngIf="segment.invalid&&segment.dirty" class="help-block">Segment is
+            required</span>
+    </div>
+    <button type="submit" class="btn btn-primary" >Edit Model</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
