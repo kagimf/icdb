@@ -302,6 +302,7 @@ public class BrandController {
 			throw new ModelNotFoundException("id-" + id);
 		}
 		Model model = modelOptional.get();
+		modification.setModificationName(modificationDetails.getModificationName());
 		modification.setProductionStartDate(modificationDetails.getProductionStartDate());
 		modification.setProductionEndDate(modificationDetails.getProductionEndDate());
 		modification.setFuelType(modificationDetails.getFuelType());

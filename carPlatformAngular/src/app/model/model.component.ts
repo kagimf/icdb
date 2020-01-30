@@ -31,7 +31,6 @@ export class ModelComponent implements OnInit {
             } else if (obj1.generation < obj2.generation) {
               return -1;
             }
-
           } else if (obj1.codeName != null) {
             if (obj1.codeName > obj2.codeName) {
               return 1;

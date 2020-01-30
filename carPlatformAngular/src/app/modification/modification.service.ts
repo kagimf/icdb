@@ -11,7 +11,7 @@ export class ModificationService {
 
   constructor(private httpClient: HttpClient, @Inject("apiUrl") private apiUrl) { }
 
-  getAllModifications(modelId?: string, modificationId?: string): Observable<HttpResponse<Modification[]>> {
+  getAllModifications(modelId?: string): Observable<HttpResponse<Modification[]>> {
     if (modelId) {
       return this.httpClient.get<Modification[]>(
         this.apiUrl + "/models/" + modelId + "/modifications", { observe: 'response' });

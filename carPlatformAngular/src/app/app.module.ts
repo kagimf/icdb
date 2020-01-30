@@ -18,7 +18,6 @@ import { ModificationEditComponent } from './modification-edit/modification-edit
 import { CompanyAddComponent } from './company-add/company-add.component';
 import { BrandAddComponent } from './brand-add/brand-add.component';
 import { ModelAddComponent } from './model-add/model-add.component';
-import { Modification } from './modification/modification';
 import { ModificationFilterPipe } from './modification/modification-filter.pipe';
 import { ModificationViewComponent } from './modification-view/modification-view.component';
 import { ModelEditComponent } from './model-edit/model-edit.component';
