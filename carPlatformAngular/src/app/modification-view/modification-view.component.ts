@@ -109,6 +109,76 @@ export class ModificationViewComponent implements OnInit {
         }
         this.successorModels.push(model);
       }
+      this.predecessorModels = this.predecessorModels.sort((obj1, obj2) => {
+        if (obj1.modelName === obj2.modelName) {
+          if (obj1.generation != 0) {
+            if (obj1.generation > obj2.generation) {
+              return 1;
+            } else if (obj1.generation < obj2.generation) {
+              return -1;
+            } else {
+              if (obj1.isFacelifted) {
+                return 1;
+              } else if (obj2.isFacelifted) {
+                return -1;
+              }
+            }
+          } else if (obj1.codeName != null) {
+            if (obj1.codeName > obj2.codeName) {
+              return 1;
+            } else if (obj1.codeName < obj2.codeName) {
+              return -1;
+            } else {
+              if (obj1.isFacelifted) {
+                return 1;
+              } else if (obj2.isFacelifted) {
+                return -1;
+              }
+            }
+          }
+        }
+        if (obj1.brand.brandName > obj2.brand.brandName) {
+          return 1;
+        } else if (obj1.brand.brandName < obj2.brand.brandName) {
+          return -1;
+        }
+        return 0;
+      });
+      this.successorModels = this.successorModels.sort((obj1, obj2) => {
+        if (obj1.modelName === obj2.modelName) {
+          if (obj1.generation != 0) {
+            if (obj1.generation > obj2.generation) {
+              return 1;
+            } else if (obj1.generation < obj2.generation) {
+              return -1;
+            } else {
+              if (obj1.isFacelifted) {
+                return 1;
+              } else if (obj2.isFacelifted) {
+                return -1;
+              }
+            }
+          } else if (obj1.codeName != null) {
+            if (obj1.codeName > obj2.codeName) {
+              return 1;
+            } else if (obj1.codeName < obj2.codeName) {
+              return -1;
+            } else {
+              if (obj1.isFacelifted) {
+                return 1;
+              } else if (obj2.isFacelifted) {
+                return -1;
+              }
+            }
+          }
+        }
+        if (obj1.brand.brandName > obj2.brand.brandName) {
+          return 1;
+        } else if (obj1.brand.brandName < obj2.brand.brandName) {
+          return -1;
+        }
+        return 0;
+      });
       
     });
 

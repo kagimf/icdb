@@ -61,125 +61,159 @@ export class PredecessorSuccessorAddComponent implements OnInit {
 
   getAllModels(type: string, brandId: string) {
     if (type === "P") {
-      this.modelService.getAllModels(brandId)
-    .subscribe(p => {
-      this.unsortedPredecessorModels = p.body;
-      this.predecessorModels = this.unsortedPredecessorModels.sort((obj1, obj2) => {
-        if(obj1.modelName === obj2.modelName){
-          if(obj1.codeName!=null){
-            if(obj1.codeName > obj2.codeName){
-              return 1;
-            }else if(obj1.codeName < obj2.codeName){
-              return -1;
-            }
-          }else if(obj1.generation!=0){
-            if(obj1.generation > obj2.generation){
-              return 1;
-            }else if(obj1.generation < obj2.generation){
-              return -1;
-            }
-          }
-        }
-        return 0;
-      });
-      for (var index in this.predecessorModels) {
-        this.predecessorModels[index].codeNameorGeneration="";
-        if(this.predecessorModels[index].isFacelifted){
-          if(this.predecessorModels[index].codeName){
-            this.predecessorModels[index].codeNameorGeneration += "("+this.predecessorModels[index].codeName+" Facelift) ";
-          }
-          if(this.predecessorModels[index].generation!=0){
-            if(this.predecessorModels[index].generation==1){
-              this.predecessorModels[index].codeNameorGeneration += "(1st Generation)";
-            }else if(this.predecessorModels[index].generation==2){
-              this.predecessorModels[index].codeNameorGeneration += "(2nd Generation)";
-            }else if(this.predecessorModels[index].generation==3){
-              this.predecessorModels[index].codeNameorGeneration += "(3rd Generation)";
-            }else{
-              this.predecessorModels[index].codeNameorGeneration += "("+this.predecessorModels[index].generation+"th Generation)"
+      this.modelService.getAllModels(brandId).subscribe(p => {
+        this.unsortedPredecessorModels = p.body;
+        this.predecessorModels = this.unsortedPredecessorModels.sort((obj1, obj2) => {
+          if (obj1.modelName === obj2.modelName) {
+            if (obj1.generation != 0) {
+              if (obj1.generation > obj2.generation) {
+                return 1;
+              } else if (obj1.generation < obj2.generation) {
+                return -1;
+              } else {
+                if (obj1.isFacelifted) {
+                  return 1;
+                } else if (obj2.isFacelifted) {
+                  return -1;
+                }
+              }
+            } else if (obj1.codeName != null) {
+              if (obj1.codeName > obj2.codeName) {
+                return 1;
+              } else if (obj1.codeName < obj2.codeName) {
+                return -1;
+              } else {
+                if (obj1.isFacelifted) {
+                  return 1;
+                } else if (obj2.isFacelifted) {
+                  return -1;
+                }
+              }
             }
           }
-          if(!this.predecessorModels[index].codeName&&this.predecessorModels[index].generation==0){
-            this.predecessorModels[index].codeNameorGeneration="(Facelift)"
+          if (obj1.brand.brandName > obj2.brand.brandName) {
+            return 1;
+          } else if (obj1.brand.brandName < obj2.brand.brandName) {
+            return -1;
           }
-        }else {
-          if(this.predecessorModels[index].codeName){
-            this.predecessorModels[index].codeNameorGeneration += "("+this.predecessorModels[index].codeName+") ";
-          }
-          if(this.predecessorModels[index].generation!=0){
-            if(this.predecessorModels[index].generation==1){
-              this.predecessorModels[index].codeNameorGeneration += "(1st Generation)";
-            }else if(this.predecessorModels[index].generation==2){
-              this.predecessorModels[index].codeNameorGeneration += "(2nd Generation)";
-            }else if(this.predecessorModels[index].generation==3){
-              this.predecessorModels[index].codeNameorGeneration += "(3rd Generation)";
-            }else{
-              this.predecessorModels[index].codeNameorGeneration += "("+this.predecessorModels[index].generation+"th Generation)"
+          return 0;
+        });
+        for (var index in this.predecessorModels) {
+          this.predecessorModels[index].codeNameorGeneration = "";
+          if (this.predecessorModels[index].isFacelifted) {
+            if (this.predecessorModels[index].codeName) {
+              this.predecessorModels[index].codeNameorGeneration += "(" + this.predecessorModels[index].codeName + " Facelift) ";
+            }
+            if (this.predecessorModels[index].generation != 0) {
+              if (this.predecessorModels[index].generation == 1) {
+                this.predecessorModels[index].codeNameorGeneration += "(1st Generation Facelift)";
+              } else if (this.predecessorModels[index].generation == 2) {
+                this.predecessorModels[index].codeNameorGeneration += "(2nd Generation Facelift)";
+              } else if (this.predecessorModels[index].generation == 3) {
+                this.predecessorModels[index].codeNameorGeneration += "(3rd Generation Facelift)";
+              } else {
+                this.predecessorModels[index].codeNameorGeneration += "(" + this.predecessorModels[index].generation + "th Generation Facelift)"
+              }
+            }
+            if (!this.predecessorModels[index].codeName && this.predecessorModels[index].generation == 0) {
+              this.predecessorModels[index].codeNameorGeneration = "(Facelift)"
+            }
+          } else {
+            if (this.predecessorModels[index].codeName) {
+              this.predecessorModels[index].codeNameorGeneration += "(" + this.predecessorModels[index].codeName + ") ";
+            }
+            if (this.predecessorModels[index].generation != 0) {
+              if (this.predecessorModels[index].generation == 1) {
+                this.predecessorModels[index].codeNameorGeneration += "(1st Generation)";
+              } else if (this.predecessorModels[index].generation == 2) {
+                this.predecessorModels[index].codeNameorGeneration += "(2nd Generation)";
+              } else if (this.predecessorModels[index].generation == 3) {
+                this.predecessorModels[index].codeNameorGeneration += "(3rd Generation)";
+              } else {
+                this.predecessorModels[index].codeNameorGeneration += "(" + this.predecessorModels[index].generation + "th Generation)"
+              }
             }
           }
         }
       }
-    });
+      );
     }else if (type === "S") {
-      this.modelService.getAllModels(brandId)
-    .subscribe(p => {
-      this.unsortedSuccessorModels = p.body;
-      this.successorModels = this.unsortedSuccessorModels.sort((obj1, obj2) => {
-        if(obj1.modelName === obj2.modelName){
-          if(obj1.codeName!=null){
-            if(obj1.codeName > obj2.codeName){
-              return 1;
-            }else if(obj1.codeName < obj2.codeName){
-              return -1;
-            }
-          }else if(obj1.generation!=0){
-            if(obj1.generation > obj2.generation){
-              return 1;
-            }else if(obj1.generation < obj2.generation){
-              return -1;
-            }
-          }
-        }
-        return 0;
-      });
-      for (var index in this.successorModels) {
-        this.successorModels[index].codeNameorGeneration="";
-        if(this.successorModels[index].isFacelifted){
-          if(this.successorModels[index].codeName){
-            this.successorModels[index].codeNameorGeneration += "("+this.successorModels[index].codeName+" Facelift) ";
-          }
-          if(this.successorModels[index].generation!=0){
-            if(this.successorModels[index].generation==1){
-              this.successorModels[index].codeNameorGeneration += "(1st Generation)";
-            }else if(this.successorModels[index].generation==2){
-              this.successorModels[index].codeNameorGeneration += "(2nd Generation)";
-            }else if(this.successorModels[index].generation==3){
-              this.successorModels[index].codeNameorGeneration += "(3rd Generation)";
-            }else{
-              this.successorModels[index].codeNameorGeneration += "("+this.successorModels[index].generation+"th Generation)"
+      this.modelService.getAllModels(brandId).subscribe(p => {
+        this.unsortedSuccessorModels = p.body;
+        this.successorModels = this.unsortedSuccessorModels.sort((obj1, obj2) => {
+          if (obj1.modelName === obj2.modelName) {
+            if (obj1.generation != 0) {
+              if (obj1.generation > obj2.generation) {
+                return 1;
+              } else if (obj1.generation < obj2.generation) {
+                return -1;
+              } else {
+                if (obj1.isFacelifted) {
+                  return 1;
+                } else if (obj2.isFacelifted) {
+                  return -1;
+                }
+              }
+            } else if (obj1.codeName != null) {
+              if (obj1.codeName > obj2.codeName) {
+                return 1;
+              } else if (obj1.codeName < obj2.codeName) {
+                return -1;
+              } else {
+                if (obj1.isFacelifted) {
+                  return 1;
+                } else if (obj2.isFacelifted) {
+                  return -1;
+                }
+              }
             }
           }
-          if(!this.successorModels[index].codeName&&this.successorModels[index].generation==0){
-            this.successorModels[index].codeNameorGeneration="(Facelift)"
+          if (obj1.brand.brandName > obj2.brand.brandName) {
+            return 1;
+          } else if (obj1.brand.brandName < obj2.brand.brandName) {
+            return -1;
           }
-        }else {
-          if(this.successorModels[index].codeName){
-            this.successorModels[index].codeNameorGeneration += "("+this.successorModels[index].codeName+") ";
-          }
-          if(this.successorModels[index].generation!=0){
-            if(this.successorModels[index].generation==1){
-              this.successorModels[index].codeNameorGeneration += "(1st Generation)";
-            }else if(this.successorModels[index].generation==2){
-              this.successorModels[index].codeNameorGeneration += "(2nd Generation)";
-            }else if(this.successorModels[index].generation==3){
-              this.successorModels[index].codeNameorGeneration += "(3rd Generation)";
-            }else{
-              this.successorModels[index].codeNameorGeneration += "("+this.successorModels[index].generation+"th Generation)"
+          return 0;
+        });
+        for (var index in this.successorModels) {
+          this.successorModels[index].codeNameorGeneration = "";
+          if (this.successorModels[index].isFacelifted) {
+            if (this.successorModels[index].codeName) {
+              this.successorModels[index].codeNameorGeneration += "(" + this.successorModels[index].codeName + " Facelift) ";
+            }
+            if (this.successorModels[index].generation != 0) {
+              if (this.successorModels[index].generation == 1) {
+                this.successorModels[index].codeNameorGeneration += "(1st Generation Facelift)";
+              } else if (this.successorModels[index].generation == 2) {
+                this.successorModels[index].codeNameorGeneration += "(2nd Generation Facelift)";
+              } else if (this.successorModels[index].generation == 3) {
+                this.successorModels[index].codeNameorGeneration += "(3rd Generation Facelift)";
+              } else {
+                this.successorModels[index].codeNameorGeneration += "(" + this.successorModels[index].generation + "th Generation Facelift)"
+              }
+            }
+            if (!this.successorModels[index].codeName && this.successorModels[index].generation == 0) {
+              this.successorModels[index].codeNameorGeneration = "(Facelift)"
+            }
+          } else {
+            if (this.successorModels[index].codeName) {
+              this.successorModels[index].codeNameorGeneration += "(" + this.successorModels[index].codeName + ") ";
+            }
+            if (this.successorModels[index].generation != 0) {
+              if (this.successorModels[index].generation == 1) {
+                this.successorModels[index].codeNameorGeneration += "(1st Generation)";
+              } else if (this.successorModels[index].generation == 2) {
+                this.successorModels[index].codeNameorGeneration += "(2nd Generation)";
+              } else if (this.successorModels[index].generation == 3) {
+                this.successorModels[index].codeNameorGeneration += "(3rd Generation)";
+              } else {
+                this.successorModels[index].codeNameorGeneration += "(" + this.successorModels[index].generation + "th Generation)"
+              }
             }
           }
         }
       }
-    });
+      );
     }
   }
 

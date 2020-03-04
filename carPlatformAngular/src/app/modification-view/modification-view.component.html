@@ -17,7 +17,7 @@
             <li class="list-group-item"><b>Modification:</b> {{modification?.modificationName}}</li>
             <li class="list-group-item"><b>Modification:</b> {{modification?.carClass}}</li>
             <li *ngIf="modification?.productionStartDate" class="list-group-item"><b>Production Start Date:</b> {{modification?.productionStartDate}}</li>
-            <li *ngIf="modification?.productionEndDate" class="list-group-item"><b>productionEndDate:</b> {{modification?.productionEndDate}}</li>
+            <li *ngIf="modification?.productionEndDate" class="list-group-item"><b>Production End Date:</b> {{modification?.productionEndDate}}</li>
             <li class="list-group-item"><b>Fuel Type:</b> {{modification?.fuelType}}</li>
             <li *ngIf="modification?.engineCode" class="list-group-item"><b>Engine Code:</b> {{modification?.engineCode}}</li>
             <li class="list-group-item"><b>Cylinder Position:</b> {{modification?.cylinderPosition}}</li>
@@ -25,9 +25,12 @@
             <li class="list-group-item"><b>Cylinder Displacement:</b> {{modification?.cylinderDisplacement}} cc ({{modification?.roundedCylinderDisplacement}} l)</li>
             <li class="list-group-item"><b>Power:</b> {{modification?.power}} hp</li>
             <li *ngIf="modification?.torque" class="list-group-item"><b>Torque:</b> {{modification?.torque}} Nm</li>
-            <li  class="list-group-item" *ngFor="let item of predecessorModels">
-                <b *ngIf="item">Predecessors: <br/></b>
-                <a  routerLink="/model/modification/{{item.id}}">{{item.brand.brandName}} {{item.modelName}} {{item.codeNameorGeneration}}<br/></a>
+            <li *ngIf="predecessorModels.length!=0" class="list-group-item" >
+                <b>Predecessors: <br/></b>
+                <div *ngFor="let item of predecessorModels">
+                    <a  routerLink="/model/modification/{{item.id}}">{{item.brand.brandName}} {{item.modelName}} {{item.codeNameorGeneration}}<br/></a>
+                </div>
+                
             </li>
         </ul>
     </div>
@@ -39,8 +42,8 @@
             <li *ngIf="modification?.transmission" class="list-group-item"><b>Transmission:</b> {{modification?.transmission}}</li>
             <li *ngIf="modification?.gearCount" class="list-group-item"><b>Gear Count:</b> {{modification?.gearCount}}</li>
             <li *ngIf="modification?.driveWheel" class="list-group-item"><b>Drive Wheel:</b> {{modification?.driveWheel}}</li>
-            <li class="list-group-item"><b>Turbine:</b> {{modification?.turbine}}</li>
-            <li class="list-group-item"><b>Engine Location:</b> {{modification?.engineLocation}}</li>
+            <li *ngIf="modification?.turbine" class="list-group-item"><b>Turbine:</b> {{modification?.turbine}}</li>
+            <li *ngIf="modification?.engineLocation" class="list-group-item"><b>Engine Location:</b> {{modification?.engineLocation}}</li>
             <li *ngIf="modification?.enginePosition" class="list-group-item"><b>Engine Position:</b> {{modification?.enginePosition}}</li>
             <li *ngIf="modification?.fuelConsumptionUrban" class="list-group-item"><b>Fuel Consumption Urban:</b> {{modification?.fuelConsumptionUrban}} l/100 km</li>
             <li *ngIf="modification?.fuelConsumptionExtraUrban" class="list-group-item"><b>Fuel Consumption Extra Urban:</b> {{modification?.fuelConsumptionExtraUrban}} l/100 km</li>
@@ -51,9 +54,11 @@
             <li class="list-group-item"><b>Door Count:</b> {{modification?.doorCount}}</li>
             <li class="list-group-item"><b>Seat Count:</b> {{modification?.seatCount}}</li>
             <li *ngIf="modification?.range" class="list-group-item"><b>Range:</b> {{modification?.range}} km</li>
-            <li  class="list-group-item" *ngFor="let item of successorModels">
-                <b *ngIf="item">Successors: <br/></b>
-                <a  routerLink="/model/modification/{{item.id}}">{{item.brand.brandName}} {{item.modelName}} {{item.codeNameorGeneration}}<br/></a>
+            <li *ngIf="successorModels.length!=0" class="list-group-item" >
+                <b>Successors: <br/></b>
+                <div *ngFor="let item of successorModels">
+                    <a  routerLink="/model/modification/{{item.id}}">{{item.brand.brandName}} {{item.modelName}} {{item.codeNameorGeneration}}<br/></a>
+                </div>
             </li>
         </ul>
         <a routerLink="/modification/edit/{{modification?.id}}" class="btn btn-xs btn-primary pull-right">Edit

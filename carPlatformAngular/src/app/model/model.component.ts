@@ -30,12 +30,24 @@ export class ModelComponent implements OnInit {
               return 1;
             } else if (obj1.generation < obj2.generation) {
               return -1;
+            } else {
+              if (obj1.isFacelifted) {
+                return 1;
+              } else if (obj2.isFacelifted) {
+                return -1;
+              }
             }
           } else if (obj1.codeName != null) {
             if (obj1.codeName > obj2.codeName) {
               return 1;
             } else if (obj1.codeName < obj2.codeName) {
               return -1;
+            } else {
+              if (obj1.isFacelifted) {
+                return 1;
+              } else if (obj2.isFacelifted) {
+                return -1;
+              }
             }
           }
         }
@@ -54,13 +66,13 @@ export class ModelComponent implements OnInit {
           }
           if (this.models[index].generation != 0) {
             if (this.models[index].generation == 1) {
-              this.models[index].codeNameorGeneration += "(1st Generation)";
+              this.models[index].codeNameorGeneration += "(1st Generation Facelift)";
             } else if (this.models[index].generation == 2) {
-              this.models[index].codeNameorGeneration += "(2nd Generation)";
+              this.models[index].codeNameorGeneration += "(2nd Generation Facelift)";
             } else if (this.models[index].generation == 3) {
-              this.models[index].codeNameorGeneration += "(3rd Generation)";
+              this.models[index].codeNameorGeneration += "(3rd Generation Facelift)";
             } else {
-              this.models[index].codeNameorGeneration += "(" + this.models[index].generation + "th Generation)"
+              this.models[index].codeNameorGeneration += "(" + this.models[index].generation + "th Generation Facelift)"
             }
           }
           if (!this.models[index].codeName && this.models[index].generation == 0) {
@@ -87,7 +99,7 @@ export class ModelComponent implements OnInit {
     }
     );
   }
-  getPager(totalItems: number, currentPage: number = 1, pageSize: number = 7): Pager {
+  getPager(totalItems: number, currentPage: number = 1, pageSize: number = 20): Pager {
     let totalPages = Math.ceil(totalItems / pageSize);
     let pages: Array<number> = [];
     for (let i = 1; i <= totalPages; i++) {

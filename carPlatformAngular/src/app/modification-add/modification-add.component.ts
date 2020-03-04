@@ -60,13 +60,24 @@ export class ModificationAddComponent implements OnInit {
               return 1;
             } else if (obj1.generation < obj2.generation) {
               return -1;
+            }else{
+              if (obj1.isFacelifted) {
+                return 1;
+              } else if (obj2.isFacelifted) {
+                return -1;
+              }
             }
-
           } else if (obj1.codeName != null) {
             if (obj1.codeName > obj2.codeName) {
               return 1;
             } else if (obj1.codeName < obj2.codeName) {
               return -1;
+            }else{
+              if (obj1.isFacelifted) {
+                return 1;
+              } else if (obj2.isFacelifted) {
+                return -1;
+              }
             }
           }
         }
