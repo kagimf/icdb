@@ -96,13 +96,13 @@ export class ModificationAddComponent implements OnInit {
           }
           if (this.models[index].generation != 0) {
             if (this.models[index].generation == 1) {
-              this.models[index].codeNameorGeneration += "(1st Generation)";
+              this.models[index].codeNameorGeneration += "(1st Generation Facelift)";
             } else if (this.models[index].generation == 2) {
-              this.models[index].codeNameorGeneration += "(2nd Generation)";
+              this.models[index].codeNameorGeneration += "(2nd Generation Facelift)";
             } else if (this.models[index].generation == 3) {
-              this.models[index].codeNameorGeneration += "(3rd Generation)";
+              this.models[index].codeNameorGeneration += "(3rd Generation Facelift)";
             } else {
-              this.models[index].codeNameorGeneration += "(" + this.models[index].generation + "th Generation)"
+              this.models[index].codeNameorGeneration += "(" + this.models[index].generation + "th Generation Facelift)"
             }
           }
           if (!this.models[index].codeName && this.models[index].generation == 0) {

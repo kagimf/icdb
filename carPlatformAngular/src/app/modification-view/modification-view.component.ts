@@ -74,37 +74,80 @@ export class ModificationViewComponent implements OnInit {
   }
 
   getModel(modelId: string, type:string) {
-
     this.modelService.getModel(modelId).subscribe(p => {
       if(type === "P"){
         var model:Model = p.body;
-        if(model.isFacelifted){
-          if(model.codeName){
-            model.codeNameorGeneration = "("+model.codeName+" Facelift)";
-          }else{
-            model.codeNameorGeneration = "(Facelift)";
+        model.codeNameorGeneration = "";
+        if (model.isFacelifted) {
+          if (model.codeName) {
+            model.codeNameorGeneration += "(" + model.codeName + " Facelift) ";
           }
-        }else{
-          if(model.codeName){
-            model.codeNameorGeneration = "("+model.codeName+")";
-          }else{
-            model.codeNameorGeneration = "";
+          if (model.generation != 0) {
+            if (model.generation == 1) {
+              model.codeNameorGeneration += "(1st Generation Facelift)";
+            } else if (model.generation == 2) {
+              model.codeNameorGeneration += "(2nd Generation Facelift)";
+            } else if (model.generation == 3) {
+              model.codeNameorGeneration += "(3rd Generation Facelift)";
+            } else {
+              model.codeNameorGeneration += "(" + model.generation + "th Generation Facelift)"
+            }
+          }
+          if (!model.codeName && model.generation == 0) {
+            model.codeNameorGeneration = "(Facelift)"
+          }
+        } else {
+          if (model.codeName) {
+            model.codeNameorGeneration += "(" + model.codeName + ") ";
+          }
+          if (model.generation != 0) {
+            if (model.generation == 1) {
+              model.codeNameorGeneration += "(1st Generation)";
+            } else if (model.generation == 2) {
+              model.codeNameorGeneration += "(2nd Generation)";
+            } else if (model.generation == 3) {
+              model.codeNameorGeneration += "(3rd Generation)";
+            } else {
+              model.codeNameorGeneration += "(" + model.generation + "th Generation)"
+            }
           }
         }
         this.predecessorModels.push(model);
       }else if(type === "S"){
         var model:Model = p.body;
-        if(model.isFacelifted){
-          if(model.codeName){
-            model.codeNameorGeneration = "("+model.codeName+" Facelift)";
-          }else{
-            model.codeNameorGeneration = "(Facelift)";
+        model.codeNameorGeneration = "";
+        if (model.isFacelifted) {
+          if (model.codeName) {
+            model.codeNameorGeneration += "(" + model.codeName + " Facelift) ";
           }
-        }else{
-          if(model.codeName){
-            model.codeNameorGeneration = "("+model.codeName+")";
-          }else{
-            model.codeNameorGeneration = "";
+          if (model.generation != 0) {
+            if (model.generation == 1) {
+              model.codeNameorGeneration += "(1st Generation Facelift)";
+            } else if (model.generation == 2) {
+              model.codeNameorGeneration += "(2nd Generation Facelift)";
+            } else if (model.generation == 3) {
+              model.codeNameorGeneration += "(3rd Generation Facelift)";
+            } else {
+              model.codeNameorGeneration += "(" + model.generation + "th Generation Facelift)"
+            }
+          }
+          if (!model.codeName && model.generation == 0) {
+            model.codeNameorGeneration = "(Facelift)"
+          }
+        } else {
+          if (model.codeName) {
+            model.codeNameorGeneration += "(" + model.codeName + ") ";
+          }
+          if (model.generation != 0) {
+            if (model.generation == 1) {
+              model.codeNameorGeneration += "(1st Generation)";
+            } else if (model.generation == 2) {
+              model.codeNameorGeneration += "(2nd Generation)";
+            } else if (model.generation == 3) {
+              model.codeNameorGeneration += "(3rd Generation)";
+            } else {
+              model.codeNameorGeneration += "(" + model.generation + "th Generation)"
+            }
           }
         }
         this.successorModels.push(model);
